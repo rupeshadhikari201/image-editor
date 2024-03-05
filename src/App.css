@@ -1,4 +1,4 @@
-/* Import Google font - Poppins */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
@@ -12,7 +12,7 @@ body {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: #fee1ec;
+  background: rgba(22, 199, 81, 0.5);
 }
 .container {
   width: 850px;
@@ -72,8 +72,9 @@ body {
 }
 .filter button.active {
   color: #fff;
-  border-color: #f4367d;
-  background: #f4367d;
+  /* border-color: #f4367d; */
+  border-color: #2ac15c;
+  background: #2ac15c;
 }
 .filter .slider {
   margin-top: 12px;
@@ -81,6 +82,7 @@ body {
 .filter .slider .filter-info {
   display: flex;
   color: #464646;
+  /* color: #eeeeee; */
   font-size: 14px;
   justify-content: space-between;
 }
@@ -104,14 +106,15 @@ body {
 }
 .rotate .options button:active {
   color: #fff;
-  background: #f4367d;
-  border-color: #f4367d;
+  background: #2ac15c;
+  border-color: #2ac15c;
 }
 .wrapper .preview-img {
   flex-grow: 1;
   display: flex;
   overflow: hidden;
   margin-left: 20px;
+  /* border: 1px solid #2ac15c; */
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -148,8 +151,8 @@ body {
 }
 .controls .save-img {
   margin-left: 5px;
-  background: #f4367d;
-  border: 1px solid #f4367d;
+  background: #2ac15c;
+  border: 1px solid #2ac15c;
 }
 
 @media screen and (max-width: 760px) {

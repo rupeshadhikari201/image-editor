@@ -1,13 +1,18 @@
+// Import necessary modules and styles
 import React, { useState, useRef } from "react";
 import "./App.css";
 
+// Define filter options for the image editor
 const filterOptions = [
   { id: "brightness", name: "Brightness" },
   { id: "saturation", name: "Saturation" },
   { id: "inversion", name: "Inversion" },
   { id: "grayscale", name: "Grayscale" },
 ];
+
+// Main React component
 function App() {
+  // State variables to manage various aspects of the image editor
   const [previewImg, setPreviewImg] = useState(null);
   const [activeFilter, setActiveFilter] = useState("brightness");
   const [sliderValue, setSliderValue] = useState(100);
@@ -18,8 +23,12 @@ function App() {
   const [rotate, setRotate] = useState(0);
   const [flipHorizontal, setFlipHorizontal] = useState(1);
   const [flipVertical, setFlipVertical] = useState(1);
+
+  // Refs for file input and preview image
   const fileInputRef = useRef(null);
   const previewImgRef = useRef(null);
+
+  // Function to load an image and reset filters
   const loadImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -27,11 +36,13 @@ function App() {
     resetFilter();
   };
 
+  // Function to apply the selected filter to the preview image
   const applyFilter = () => {
     previewImgRef.current.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
     previewImgRef.current.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
   };
 
+  // Function to reset all filters and transformations
   const resetFilter = () => {
     setBrightness("100");
     setSaturation("100");
@@ -44,6 +55,7 @@ function App() {
     setSliderValue(100);
   };
 
+  // Function to save the filtered image
   const saveImage = () => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -75,6 +87,7 @@ function App() {
     image.src = URL.createObjectURL(previewImg);
   };
 
+  // Function to handle filter option click
   const handleFilterClick = (option) => {
     setActiveFilter(option.id);
 
@@ -92,6 +105,8 @@ function App() {
         setSliderValue(grayscale);
     }
   };
+
+  // Function to handle slider value change
   const handleSliderChange = (event) => {
     setSliderValue(event.target.value);
     switch (activeFilter) {
@@ -108,6 +123,8 @@ function App() {
         setGrayscale(event.target.value);
     }
   };
+
+  // Function to handle rotation and flipping
   const handleRotate = (option) => {
     if (option === "left") {
       setRotate(rotate - 90);
@@ -119,14 +136,17 @@ function App() {
       setFlipVertical(flipVertical === 1 ? -1 : 1);
     }
   };
+
+  // JSX structure for the main component
   return (
     <div className={`container ${!previewImg ? "disable" : ""}`}>
-      <h2>Easy Image Editor</h2>
+      <h2>Image Editor</h2>
       <div className="wrapper">
         <div className="editor-panel">
           <div className="filter">
             <label className="title">Filters</label>
 
+            {/* Display filter options as buttons */}
             <div className="options">
               {filterOptions.map((option) => (
                 <button
@@ -136,9 +156,14 @@ function App() {
                   onClick={() => handleFilterClick(option)}
                 >
                   {option.name}
+
                 </button>
+
               ))}
+              <h5 style={{ paddingTop: 4, paddingBottom: 4, color: '#6c757d' }}>more features commming soon ..</h5>
             </div>
+
+            {/* Display slider for adjusting filter intensity */}
             <div className="slider">
               <div className="filter-info">
                 <p className="name">{activeFilter}</p>
@@ -157,6 +182,8 @@ function App() {
               />
             </div>
           </div>
+
+          {/* Rotate and flip options */}
           <div className="rotate">
             <label className="title">Rotate & Flip</label>
             <div className="options">
@@ -178,6 +205,8 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* Display preview of the edited image */}
         <div className="preview-img">
           {previewImg ? (
             <img
@@ -191,6 +220,8 @@ function App() {
           )}
         </div>
       </div>
+
+      {/* Control buttons for resetting filters, choosing image, and saving image */}
       <div className="controls">
         <button className="reset-filter" onClick={resetFilter}>
           Reset Filters
@@ -219,4 +250,5 @@ function App() {
   );
 }
 
+// Export the component as the default export
 export default App;
