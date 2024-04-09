@@ -1,6 +1,5 @@
 ## Run on your Local Machine
-
-1. `git clone https://github.com/walifile/reaimage-editor.git`
+1. `git clone`
 2. `cd image-editor`
 3. `npm install`
 4. `npm start`
